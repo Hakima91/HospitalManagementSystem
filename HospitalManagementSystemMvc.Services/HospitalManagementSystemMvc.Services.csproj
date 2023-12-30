@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\HospitalManagementSystemMvc.Data\HospitalManagementSystemMvc.Data.csproj" />
+    <ProjectReference Include="..\HospitalManagementSystemMvc.Models\HospitalManagementSystemMvc.Models.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
