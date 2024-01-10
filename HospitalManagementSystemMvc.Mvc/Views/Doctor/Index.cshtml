@@ -1,0 +1,37 @@
+@model List<HospitalManagementSystemMvc.Models.Doctor.DoctorIndexViewModel>
+@{
+    ViewData["Title"] = "Doctor Index";
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-baseline">
+    <h1>Doctor</h1>
+    <a asp-controller="Doctor" asp-action="Create" class="btn btn-sm btn-success">Create a Doctor</a>
+</div>
+
+<table class="table table-striped border">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Doctor in Model)
+        {
+            <tr>
+                <td>@Doctor.Id</td>
+                <td>@Doctor.FirstName</td>
+                <td>@Doctor.Email</td>
+                <td>@Doctor.Address</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@Doctor.Id" class="btn btn-sm btn-primary">Details</a>
+                    <a asp-action="Edit" asp-route-id="@Doctor.Id" class="btn btn-sm btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@Doctor..Id" class="btn btn-sm btn-primary">Delete</a>
+                </td>                
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using HospitalManagementSystemMvc.Mvc.Models;
+using HospitalManagementSystemMvc.Models;
 
 namespace HospitalManagementSystemMvc.Mvc.Controllers;
 

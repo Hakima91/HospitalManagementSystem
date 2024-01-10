@@ -1,7 +1,33 @@
+
+using HospitalManagementSystemMvc.Data;
+using HospitalManagementSystemMvc.Service.Doctor;
+using HospitalManagementSystemMvc.Services.Appointment;
+using HospitalManagementSystemMvc.Services.Doctor;
+using HospitalManagementSystemMvc.Services.Patient;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<HospitalManagementSystemDbContext>(
+    options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("HospitalManagmentSystemDb")
+    )
+);
+
+builder.Services.AddScoped<IPatientService, PateintService>();
+// builder.Services.AddScoped<IBillingService, BillingService>();
+builder.Services.AddScoped<IDoctorService, DoctorService>();
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+
+
+
+
+
+// builder.Services.AddDefaultIdentity<PateintEntity>()
+// .AddEntityFrameworkStores<HospitalManagementSystemDbContext();
 
 var app = builder.Build();
 
