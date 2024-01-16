@@ -17,7 +17,7 @@ public class HospitalManagementSystemDbContext: IdentityDbContext<PatientEntity,
     public DbSet<DoctorEntity> Doctors { get; set; }
     public DbSet<AppointmentEntity> Appointments{ get; set; }
     public DbSet<DepartmentEntity> Departments { get; set; }
-    // public DbSet<BillingEntity> Billings { get; set; }
+    public DbSet<BillingEntity> Billings { get; set; }
     
     protected override void OnModelCreating(ModelBuilder builder)
     {

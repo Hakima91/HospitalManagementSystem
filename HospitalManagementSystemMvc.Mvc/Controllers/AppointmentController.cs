@@ -4,7 +4,7 @@ using HospitalManagementSystemMvc.Models.Appointment;
 using HospitalManagementSystemMvc.Services.Appointment;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HospitalManagementSystemMvc.Mvc.ControllerController;
+namespace HospitalManagementSystemMvc.Mvc.Controllers;
 public class   AppointmentController : Controller
 {
     private readonly IAppointmentService _AppointmentService;
@@ -44,7 +44,7 @@ public class   AppointmentController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    // GET: patient/details/{id}
+    // GET: Appointment/details/{id}
     public async Task<IActionResult> Details(int id)
     {
         if (id == 0)
@@ -62,7 +62,7 @@ public class   AppointmentController : Controller
         return View(Appointment);
     }
 
-    // GET: patient/edit/{id}
+    // GET: Appointment/edit/{id}
     public async Task<IActionResult> Edit(int id)
     {
         if (id ==0)
@@ -97,7 +97,7 @@ public class   AppointmentController : Controller
         return View(model);
     }
 
-    // GET: patient/delete/{id}
+    // GET: Appointment/delete/{id}
     public async Task<IActionResult> Delete(int id)
     {
         var entity = await _AppointmentService.DeleteAppointmentByIdAsync( id);

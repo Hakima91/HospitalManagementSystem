@@ -1,0 +1,35 @@
+@model HospitalManagementSystemMvc.Models.Billing.BillingCreateViewModel
+@{
+    ViewData["Title"] = "Create Billing";
+}
+
+@if (TempData["ErrorMsg"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>ERROR:</strong> @TempData["ErrorMsg"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Create" method="post" class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="BillingId" class="form-label"> BillingId</label>
+        <input asp-for="BillingId" class="form-control">
+        <span asp-validation-for="BillingId" class="text-danger"></span>
+    </div>
+     <div class="col-md-6">
+        <label asp-for="Amount" class="form-label">Address</label>
+        <input asp-for="Amount" class="form-control">
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="DateOfBilling" class="form-label"></label>
+        <input asp-for="DateOfBilling" class="form-control">
+        <span asp-validation-for="DateOfBilling" class="text-danger"></span>
+    </div>
+    <div class="col d-flex justify-content-between align-items-baseline">
+        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Create" class="btn btn-primary">
+    </div>
+</form>

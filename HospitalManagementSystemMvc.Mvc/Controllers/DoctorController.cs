@@ -2,7 +2,7 @@ using HospitalManagementSystemMvc.Models.Doctor;
 using HospitalManagementSystemMvc.Services.Doctor;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HospitalManagementSystemMvc.Mvc.ControllerController;
+namespace HospitalManagementSystemMvc.Mvc.Controllers;
 public class   DoctorController : Controller
 {
     private readonly IDoctorService _DoctorService;

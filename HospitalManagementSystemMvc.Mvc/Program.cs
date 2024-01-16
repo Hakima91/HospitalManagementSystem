@@ -2,6 +2,8 @@
 using HospitalManagementSystemMvc.Data;
 using HospitalManagementSystemMvc.Service.Doctor;
 using HospitalManagementSystemMvc.Services.Appointment;
+using HospitalManagementSystemMvc.Services.Billing;
+using HospitalManagementSystemMvc.Services.Department;
 using HospitalManagementSystemMvc.Services.Doctor;
 using HospitalManagementSystemMvc.Services.Patient;
 using Microsoft.EntityFrameworkCore;
@@ -17,10 +19,11 @@ builder.Services.AddDbContext<HospitalManagementSystemDbContext>(
     )
 );
 
-builder.Services.AddScoped<IPatientService, PateintService>();
-// builder.Services.AddScoped<IBillingService, BillingService>();
+builder.Services.AddScoped<IPatientService, PatientService>();
+builder.Services.AddScoped<IBillingService, BillingService>();
 builder.Services.AddScoped<IDoctorService, DoctorService>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+builder.Services.AddScoped<IDepartmentService , DepartmentService>();
 
 
 

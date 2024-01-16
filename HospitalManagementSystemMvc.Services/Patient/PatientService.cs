@@ -4,10 +4,10 @@ using HospitalManagementSystemMvc.Models.Patient;
 using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManagementSystemMvc.Services.Patient;
-     public class PateintService : IPatientService
+     public class PatientService : IPatientService
 {
     private readonly HospitalManagementSystemDbContext _ctx;
-    public PateintService(HospitalManagementSystemDbContext dbContext)
+    public PatientService(HospitalManagementSystemDbContext dbContext)
     {
         _ctx = dbContext;
     }
@@ -101,11 +101,13 @@ namespace HospitalManagementSystemMvc.Services.Patient;
         return await _ctx.SaveChangesAsync() == 1;
     }
 
+    
+
     // GET: patient/delete/{id}
     public async Task<bool> DeletePatientAsync(int id)
     {
         var entity = await _ctx.Patients
-        
+
             .FirstOrDefaultAsync(c => c.Id == id);
 
         if (entity is null)
@@ -119,5 +121,10 @@ namespace HospitalManagementSystemMvc.Services.Patient;
 
         return true;
     }
+      
+      
+
+
 }
+
 

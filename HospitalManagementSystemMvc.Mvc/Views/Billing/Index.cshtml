@@ -1,0 +1,36 @@
+@model List<HospitalManagementSystemMvc.Models.Billing.BillingIndexViewModel>
+@{
+    ViewData["Title"] = "Billing Index";
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-baseline">
+    <h1>Billing</h1>
+    <a asp-controller="Billing" asp-action="Create" class="btn btn-sm btn-success">Create a Billing</a>
+</div>
+
+<table class="table table-striped border">
+    <thead>
+        <tr>
+            <th>BillingId</th>
+            <th>PatientId</th>
+            <th>Amount</th>
+            <th>DateOfBilling</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Billing in  Model)
+        {
+            <tr>
+                <td>@Billing.BillingId</td>
+                <td>@Billing.PatientId</td>
+                <td>@Billing.Amount</td>
+                <td>@Billing.DateOfBilling</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@Billing.BillingId" class="btn btn-sm btn-primary">Details</a>
+                    <a asp-action="Edit" asp-route-id="@Billing.BillingId" class="btn btn-sm btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@Billing.BillingId" class="btn btn-sm btn-primary">Delete</a>
+                </td>                
+            </tr>
+        }
+    </tbody>
+</table>

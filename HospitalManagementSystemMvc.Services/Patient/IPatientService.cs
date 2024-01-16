@@ -16,4 +16,5 @@ public interface IPatientService
 
     // Delete
     Task<bool> DeletePatientAsync(int id);
+    
 }
