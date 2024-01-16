@@ -10,7 +10,6 @@ public interface IDepartmentService
     // Read
     Task<List<DepartmentIndexViewModel>> GetAllDepartmentAsync();
     Task<DepartmentDetailViewModel> GetDepartmentByIdAsync(int id);
-    // Task<DepartmentEditViewModel> GetEditDepartmentByIdAsync(int id);
 
     // Edit
     Task<bool> EditDepartmentByIdAsync(int id, DepartmentEditViewModel model);

@@ -11,7 +11,7 @@ namespace HospitalManagementSystemMvc.Services.Patient;
     {
         _ctx = dbContext;
     }
-
+     //read All
     public async Task<List<PatientIndexViewModel>> GetAllPatientsAsync()
     {
         List<PatientIndexViewModel> patient= await _ctx.Patients
@@ -26,7 +26,8 @@ namespace HospitalManagementSystemMvc.Services.Patient;
 
         return patient;
     }
-
+     
+     //Create
     public async Task<bool> CreatePatientAsync(PatientCreateViewModel model)
     {
         PatientEntity entity = new()
@@ -43,18 +44,15 @@ namespace HospitalManagementSystemMvc.Services.Patient;
         return await _ctx.SaveChangesAsync() == 1;
     }
 
-    // GET: patient/details/{id}
+    // Read by Id
     public async Task<PatientDetailViewModel> GetPatientByIdAsync(int? id)
     {
         var entity = await _ctx.Patients
-            // .Include(c => c.Billings)
         
             .FirstOrDefaultAsync(c => c.Id == id);
 
         if (entity is null)
             return null;
-
-    
 
         PatientDetailViewModel model = new()
         {
@@ -69,7 +67,6 @@ namespace HospitalManagementSystemMvc.Services.Patient;
         return  model;
     }
 
-    // GET: patient/edit/{id}
     public async Task<PatientEditViewModel> GetEditPatientByIdAsync(int? id)
     {
         var entity = await _ctx.Patients.FindAsync(id);
@@ -86,7 +83,7 @@ namespace HospitalManagementSystemMvc.Services.Patient;
         return  model;
     }
 
-
+     //Edit
     public async Task<bool> EditPatientByIdAsync(int id, PatientEditViewModel model)
     {
         var entity = _ctx.Patients.Find(id);
@@ -103,7 +100,7 @@ namespace HospitalManagementSystemMvc.Services.Patient;
 
     
 
-    // GET: patient/delete/{id}
+    // /delete
     public async Task<bool> DeletePatientAsync(int id)
     {
         var entity = await _ctx.Patients
@@ -114,17 +111,11 @@ namespace HospitalManagementSystemMvc.Services.Patient;
         {
             return false;
         }
-
-    //     {
-            return false;
-    //     }
-
         return true;
-    }
-      
+   
       
 
+    }
 
 }
-
 

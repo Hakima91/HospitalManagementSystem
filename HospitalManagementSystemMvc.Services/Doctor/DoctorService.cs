@@ -16,7 +16,8 @@ public class DoctorService : IDoctorService
     {
         _cxt =dbContext;
     }
-
+    
+    // Read all
  public async Task<List<DoctorIndexViewModel>> GetAllDoctorsAsync()
  {
     List<DoctorIndexViewModel> doctors = await _cxt.Doctors
@@ -32,7 +33,8 @@ public class DoctorService : IDoctorService
 
      return doctors;
  }
-
+ 
+    // Create
  public async Task<bool> CreateDoctorAsync(DoctorCreateViewModel model)
  {
     DoctorEntity entity = new()
@@ -48,6 +50,8 @@ public class DoctorService : IDoctorService
 
     return await _cxt.SaveChangesAsync()==1;
  }
+
+   // Read By id
   public async Task<DoctorDetailViewModel> GetDoctorByIdAsync(int  doctorId)
 
   {
@@ -68,6 +72,8 @@ public class DoctorService : IDoctorService
         await _cxt.SaveChangesAsync();
         return  model;
     }
+
+      // Edit
      public async Task<bool> EditDoctorByIdAsync(int id, DoctorEditViewModel model)
     {
         var entity = _cxt.Doctors.Find(id);
@@ -82,6 +88,7 @@ public class DoctorService : IDoctorService
         return await _cxt.SaveChangesAsync() == 1;
     }
     
+       //delete
          public  async Task<TextResponse> DeleteDoctorByIdAsync(int id)
     {
         var doctorToDelete = await  _cxt.Users.FirstOrDefaultAsync(e => e.Id == id);

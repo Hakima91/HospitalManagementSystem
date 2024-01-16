@@ -13,7 +13,8 @@ public class DepartmentService : IDepartmentService
     {
         _ctx = DbContext;
     }
-
+      
+      //read all
      public async Task<List<DepartmentIndexViewModel>> GetAllDepartmentAsync()
  {
     List<DepartmentIndexViewModel> Departments= await _ctx.Departments
@@ -29,6 +30,7 @@ public class DepartmentService : IDepartmentService
     
      return Departments;
  }
+ // Create
   public async Task<bool> CreateDepartmentAsync(DepartmentCreateViewModel model)
     {
         DepartmentEntity entity = new()
@@ -44,6 +46,8 @@ public class DepartmentService : IDepartmentService
 
         return await _ctx.SaveChangesAsync() == 1;
     }
+
+    // read by id
      public async Task<DepartmentDetailViewModel> GetDepartmentByIdAsync(int id)
     {
         DepartmentEntity? entity = await _ctx.Departments.FindAsync(id);
@@ -61,7 +65,8 @@ public class DepartmentService : IDepartmentService
         await _ctx.SaveChangesAsync();
         return model;
     }
-   
+    
+    // Edit
 public async Task<bool> EditDepartmentByIdAsync(int id, DepartmentEditViewModel model)
     {
         var entity = _ctx.Departments.Find(id);
@@ -76,6 +81,7 @@ public async Task<bool> EditDepartmentByIdAsync(int id, DepartmentEditViewModel 
         return await _ctx.SaveChangesAsync() == 1;
     }
 
+     // Delete
      public async Task<TextResponse> DeleteDepartmentByIdAsync(int id)
     {
         var DepartmentToDelete = await _ctx.Departments.FirstOrDefaultAsync(e => e.DepartmentId == id);

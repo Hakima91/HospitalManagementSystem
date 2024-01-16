@@ -12,7 +12,8 @@ public class BillingService : IBillingService
     {
         _ctx = DbContext;
     }
-
+        
+        // Read All
        public async Task<List<BillingIndexViewModel>> GetAllBillingAsync()
  {
     List<BillingIndexViewModel> Billings= await _ctx.Billings
@@ -28,6 +29,8 @@ public class BillingService : IBillingService
     
      return Billings;
  }
+
+    // Create
 
    public async Task<bool> CreateBillingAsync(BillingCreateViewModel model)
     {
@@ -45,6 +48,8 @@ public class BillingService : IBillingService
 
         return await _ctx.SaveChangesAsync() == 1;
     }
+
+        //  read by id
        public async Task<BillingDetailViewModel> GetBillingByIdAsync(int id)
     {
         BillingEntity? entity = await _ctx.Billings.FindAsync(id);
@@ -63,6 +68,7 @@ public class BillingService : IBillingService
         return model;
     }
     
+    // Edit
 public async Task<bool> EditBillingByIdAsync(int id, BillingEditViewModel model)
     {
         var entity = _ctx.Billings.Find(id);
@@ -75,6 +81,8 @@ public async Task<bool> EditBillingByIdAsync(int id, BillingEditViewModel model)
 
         return await _ctx.SaveChangesAsync() == 1;
     }
+
+    // Delete
      public async Task<TextResponse> DeleteBillingByIdAsync(int id)
     {
         var BillingToDelete = await _ctx.Billings.FirstOrDefaultAsync(e => e.BillingId == id);
