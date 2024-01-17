@@ -9,9 +9,8 @@ public interface IBillingService
 
     // Read
     Task<List<BillingIndexViewModel>> GetAllBillingAsync();
+    
     Task<BillingDetailViewModel> GetBillingByIdAsync(int id);
-    // Task<DepartmentEditViewModel> GetEditDepartmentByIdAsync(int id);
-
     // Edit
     Task<bool> EditBillingByIdAsync(int id, BillingEditViewModel model);
 

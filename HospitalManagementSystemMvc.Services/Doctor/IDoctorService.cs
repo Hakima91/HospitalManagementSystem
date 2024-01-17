@@ -11,8 +11,7 @@ public interface IDoctorService
     // Read
     Task<List<DoctorIndexViewModel>> GetAllDoctorsAsync();
     Task<DoctorDetailViewModel> GetDoctorByIdAsync(int id);
-    // Task<DoctorEditViewModel> GetEditDoctorByIdAsync(int id);
-
+   
     // Edit
     Task<bool> EditDoctorByIdAsync(int id, DoctorEditViewModel model);
 

@@ -1,6 +1,6 @@
 @model HospitalManagementSystemMvc.Models.Patient.PatientDetailViewModel
 @{
-    string title = $"Ptient {Model.Id}";
+    string title = $"Patient {Model.Id}";
     ViewData["Title"] = title;
 }
 
@@ -25,7 +25,7 @@
     </dd>
 </dl>
 
-<component type="typeof(int)" render-mode="ServerPrerendered" param-transactions="Model.Id" />
+@* <component type="typeof(int)" render-mode="ServerPrerendered" param-transactions="Model.Id" /> *@
 
 <div>
     <a asp-action="Index" class="btn btn-primary">Back to List</a>

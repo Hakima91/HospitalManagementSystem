@@ -1,13 +1,19 @@
 @model HospitalManagementSystemMvc.Models.Doctor.DoctorDetailViewModel
 @{
-    string title = $"Doctor {Model.Id}";
-    ViewData["Title"] = title;
+    @* string title = $"Doctor {Model.Id}"; *@
+    ViewData["Title"] = Model;
 }
-
-<div class="d-flex justify-content-between align-items-center mb-2">
-    <h1>@title</h1>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-light">Edit</a>
+   @* <h1>Doctor</h1>
+<div class="d-flex justify-content-between align-items-center mb-2"> *@
+    <h1>Doctor</h1>
+    <h2>Doctor Details</h2>
+    @* <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-light">Edit</a> *@
     <a asp-controller="Doctor" asp-action="Create" asp-route-DoctorId="@Model.Id" class="btn btn-success">Shop</a>
+     Create Doctor
+     </a>
+     <a asp-controller="Doctor" asp-action="Details" asp-route-DoctorId="@Model.Id" class="btn btn-success">Shop</a>
+     Details Doctor
+     </a>
 </div>
 
 <dl class="row">
@@ -25,7 +31,7 @@
     </dd>
 </dl>
 
-<component type="typeof(int)" render-mode="ServerPrerendered" param-transactions="Model.Id" />
+@* <component type="typeof(int)" render-mode="ServerPrerendered" param-transactions="Model.Id" /> *@
 
 <div>
     <a asp-action="Index" class="btn btn-primary">Back to List</a>

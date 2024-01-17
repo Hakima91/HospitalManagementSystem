@@ -37,7 +37,6 @@ public class BillingService : IBillingService
         BillingEntity entity = new()
         {
         
-            BillingId = model.BillingId,
             PatientId = model.PatientId,
             Amount= model.Amount,
             DateOfBilling = DateTime.Now

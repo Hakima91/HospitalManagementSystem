@@ -27,7 +27,7 @@ public class HospitalManagementSystemDbContext: IdentityDbContext<PatientEntity,
         builder.Entity<DoctorEntity>().ToTable("Doctors");
         builder.Entity<AppointmentEntity>().ToTable("Appointments");
         builder.Entity<DepartmentEntity>().ToTable("Departments");
-    
+        builder.Entity<BillingEntity>(). ToTable("Billings");
     }
 }
 

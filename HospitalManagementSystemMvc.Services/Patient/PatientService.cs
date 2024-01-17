@@ -98,8 +98,6 @@ namespace HospitalManagementSystemMvc.Services.Patient;
         return await _ctx.SaveChangesAsync() == 1;
     }
 
-    
-
     // /delete
     public async Task<bool> DeletePatientAsync(int id)
     {
@@ -111,11 +109,15 @@ namespace HospitalManagementSystemMvc.Services.Patient;
         {
             return false;
         }
+        
+        _ctx.Patients.Remove(entity);
         return true;
-   
-      
+
+
 
     }
-
 }
+    
+
+
 

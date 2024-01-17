@@ -14,7 +14,6 @@ public class AppointmentService : IAppointmentService
         _ctx = DbContext;
     }
 
-     
      public async Task<List<AppointmentIndexViewModel>> GetAllAppointmentAsync()
  {
     List<AppointmentIndexViewModel> Appointment= await _ctx.Appointments
@@ -34,7 +33,6 @@ public class AppointmentService : IAppointmentService
     {
         AppointmentEntity entity = new()
         {
-            // AppointmentId = model.Id,
             PatientId = model.PatientId,
             DoctorId = model.DoctorId,
             DateCreated = DateTime.Now
@@ -49,11 +47,9 @@ public class AppointmentService : IAppointmentService
     public async Task<AppointmentDetailViewModel> GetAppointmentByIdAsync(int id)
     {
 
-
         AppointmentEntity? entity = await _ctx.Appointments.FindAsync(id);
         if (entity is null)
             return null;
-
 
 
         AppointmentDetailViewModel model = new()

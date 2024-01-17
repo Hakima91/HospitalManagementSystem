@@ -36,7 +36,7 @@ public class DoctorService : IDoctorService
  
     // Create
  public async Task<bool> CreateDoctorAsync(DoctorCreateViewModel model)
- {
+  {
     DoctorEntity entity = new()
     {
     
