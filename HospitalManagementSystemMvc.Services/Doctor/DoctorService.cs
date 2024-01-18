@@ -94,11 +94,11 @@ public class DoctorService : IDoctorService
        //delete
          public  async Task<TextResponse> DeleteDoctorByIdAsync(int id)
     {
-        var doctorToDelete = await  _cxt.Users.FirstOrDefaultAsync(e => e.Id == id);
+        var doctorToDelete = await  _cxt.Doctors.FirstOrDefaultAsync(e => e.DoctorId == id);
 
         if (doctorToDelete != null)
         {
-            _cxt.Users.Remove(doctorToDelete);
+            _cxt.Doctors.Remove(doctorToDelete);
             await _cxt.SaveChangesAsync();
         }
 
