@@ -12,35 +12,35 @@ public class BillingService : IBillingService
     {
         _ctx = DbContext;
     }
-        
-        // Read All
-       public async Task<List<BillingIndexViewModel>> GetAllBillingAsync()
- {
-    List<BillingIndexViewModel> Billings= await _ctx.Billings
-    .Select(Billing=> new BillingIndexViewModel
-    {
-        BillingId = Billing.BillingId,
-        PatientId= Billing.PatientId,
-        Amount = Billing.Amount,
-        DateOfBilling = DateTime.Now
 
-    })
-    .ToListAsync();
-    
-     return Billings;
- }
+    // Read All
+    public async Task<List<BillingIndexViewModel>> GetAllBillingAsync()
+    {
+        List<BillingIndexViewModel> Billings = await _ctx.Billings
+        .Select(Billing => new BillingIndexViewModel
+        {
+            BillingId = Billing.BillingId,
+            PatientId = Billing.PatientId,
+            Amount = Billing.Amount,
+            DateOfBilling = DateTime.Now
+
+        })
+        .ToListAsync();
+
+        return Billings;
+    }
 
     // Create
 
-   public async Task<bool> CreateBillingAsync(BillingCreateViewModel model)
+    public async Task<bool> CreateBillingAsync(BillingCreateViewModel model)
     {
         BillingEntity entity = new()
         {
-        
+
             PatientId = model.PatientId,
-            Amount= model.Amount,
+            Amount = model.Amount,
             DateOfBilling = DateTime.Now
-             
+
         };
 
         _ctx.Billings.Add(entity);
@@ -48,8 +48,8 @@ public class BillingService : IBillingService
         return await _ctx.SaveChangesAsync() == 1;
     }
 
-        //  read by id
-       public async Task<BillingDetailViewModel> GetBillingByIdAsync(int id)
+    //  read by id
+    public async Task<BillingDetailViewModel> GetBillingByIdAsync(int id)
     {
         BillingEntity? entity = await _ctx.Billings.FindAsync(id);
         if (entity is null)
@@ -66,23 +66,24 @@ public class BillingService : IBillingService
         await _ctx.SaveChangesAsync();
         return model;
     }
-    
+
     // Edit
-public async Task<bool> EditBillingByIdAsync(int id, BillingEditViewModel model)
+    public async Task<bool> EditBillingByIdAsync(int id, BillingEditViewModel model)
     {
         var entity = _ctx.Billings.Find(id);
 
         entity.BillingId = model.BillingId;
-        entity.PatientId= model.PatientId;
+        entity.PatientId = model.PatientId;
         entity.Amount = model.Amount;
-
+        entity.DateOfBilling = model.DateOfBilling;
+    
         _ctx.Entry(entity).State = EntityState.Modified;
 
         return await _ctx.SaveChangesAsync() == 1;
     }
 
     // Delete
-     public async Task<TextResponse> DeleteBillingByIdAsync(int id)
+    public async Task<TextResponse> DeleteBillingByIdAsync(int id)
     {
         var BillingToDelete = await _ctx.Billings.FirstOrDefaultAsync(e => e.BillingId == id);
 
@@ -97,5 +98,5 @@ public async Task<bool> EditBillingByIdAsync(int id, BillingEditViewModel model)
         return response;
     }
 
-   
+
 }

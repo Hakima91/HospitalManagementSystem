@@ -58,6 +58,32 @@ public class BillingController : Controller
         return View(Billing);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+       if (id == 0)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+        
+        var bill = await _BillingService.GetBillingByIdAsync(id);
+
+        BillingEditViewModel model = new()
+        {
+            BillingId = bill.BillingId,
+            PatientId = bill.PatientId,
+            Amount = bill.Amount,
+            DateOfBilling = bill.DateOfBilling
+        };
+
+        if (bill is null)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
+        return View(model);
+    }
+
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, BillingEditViewModel model)
     {
@@ -66,14 +92,13 @@ public class BillingController : Controller
         {
             return NotFound();
         }
+      
+        
+        return RedirectToAction(nameof(Index));
+        
 
-        if (Billing!= false)
-        {
-            return RedirectToAction(nameof(Index));
-        }
-
-        TempData["ErrorMsg"] = "Unable to save to the database. Please try again later.";
-        return View(model);
+        // TempData["ErrorMsg"] = "Unable to save to the database. Please try again later.";
+        // return View(model);
     }
      public async Task<IActionResult> Delete(int id)
     {
