@@ -23,6 +23,7 @@ public class DoctorService : IDoctorService
     List<DoctorIndexViewModel> doctors = await _cxt.Doctors
     .Select(doctor => new DoctorIndexViewModel
     {
+        Id = doctor.DoctorId,
         FirstName = doctor.FirstName,
         LastName = doctor.LastName,
         Email  = doctor.Email,
@@ -64,7 +65,9 @@ public class DoctorService : IDoctorService
       
       DoctorDetailViewModel model = new()
         {
-            FirstName = entity.LastName,
+            Id = entity.DoctorId,
+            FirstName = entity.FirstName,
+            LastName = entity.LastName,
             Email = entity.Email,
             Address = entity.Address
         };
