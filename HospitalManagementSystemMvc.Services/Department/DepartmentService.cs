@@ -13,32 +13,32 @@ public class DepartmentService : IDepartmentService
     {
         _ctx = DbContext;
     }
-      
-      //read all
-     public async Task<List<DepartmentIndexViewModel>> GetAllDepartmentAsync()
- {
-    List<DepartmentIndexViewModel> Departments= await _ctx.Departments
-    .Select(Department=> new DepartmentIndexViewModel
-    {
-        Id = Department.DepartmentId,
-        Name = Department.Name,
-        Email = Department.Email,
-        Address = Department.Address
 
-    })
-    .ToListAsync();
-    
-     return Departments;
- }
- // Create
-  public async Task<bool> CreateDepartmentAsync(DepartmentCreateViewModel model)
+    //read all
+    public async Task<List<DepartmentIndexViewModel>> GetAllDepartmentAsync()
+    {
+        List<DepartmentIndexViewModel> Departments = await _ctx.Departments
+        .Select(Department => new DepartmentIndexViewModel
+        {
+            Id = Department.DepartmentId,
+            Name = Department.Name,
+            Email = Department.Email,
+            Address = Department.Address
+
+        })
+        .ToListAsync();
+
+        return Departments;
+    }
+    // Create
+    public async Task<bool> CreateDepartmentAsync(DepartmentCreateViewModel model)
     {
         DepartmentEntity entity = new()
         {
             // AppointmentId = model.Id,
             DepartmentId = model.DepartmentId,
             Name = model.Name,
-            Email= model.Email,
+            Email = model.Email,
             Address = model.Address
         };
 
@@ -48,7 +48,7 @@ public class DepartmentService : IDepartmentService
     }
 
     // read by id
-     public async Task<DepartmentDetailViewModel> GetDepartmentByIdAsync(int id)
+    public async Task<DepartmentDetailViewModel> GetDepartmentByIdAsync(int id)
     {
         DepartmentEntity? entity = await _ctx.Departments.FindAsync(id);
         if (entity is null)
@@ -65,24 +65,23 @@ public class DepartmentService : IDepartmentService
         await _ctx.SaveChangesAsync();
         return model;
     }
-    
+
     // Edit
-public async Task<bool> EditDepartmentByIdAsync(int id, DepartmentEditViewModel model)
+    public async Task<bool> EditDepartmentByIdAsync(int id, DepartmentEditViewModel model)
     {
         var entity = _ctx.Departments.Find(id);
 
-        entity.DepartmentId = model.DepartmentId;
-        entity.Name= model.Name;
+        entity.Name = model.Name;
         entity.Email = model.Email;
-        entity.Address= model.Address;
+        entity.Address = model.Address;
 
         _ctx.Entry(entity).State = EntityState.Modified;
 
         return await _ctx.SaveChangesAsync() == 1;
     }
 
-     // Delete
-     public async Task<TextResponse> DeleteDepartmentByIdAsync(int id)
+    // Delete
+    public async Task<TextResponse> DeleteDepartmentByIdAsync(int id)
     {
         var DepartmentToDelete = await _ctx.Departments.FirstOrDefaultAsync(e => e.DepartmentId == id);
 
@@ -97,6 +96,6 @@ public async Task<bool> EditDepartmentByIdAsync(int id, DepartmentEditViewModel 
         return response;
     }
 
-    
+
 }
 

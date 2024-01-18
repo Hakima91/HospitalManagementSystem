@@ -61,20 +61,28 @@ public class   DoctorController : Controller
     }
 
     // GET: Doctor/edit/{id}
-    public async Task<IActionResult> Edit(int? id)
+    public async Task<IActionResult> Edit(int id)
     {
-        if (id is null)
+        if (id == 0)
         {
             return RedirectToAction(nameof(Index));
         }
         
-        var Doctor = await _DoctorService.GetDoctorByIdAsync((int)id);
+        var doctor = await _DoctorService.GetDoctorByIdAsync(id);
 
-        if (Doctor is null)
+        DoctorEditViewModel model = new()
+        {
+            Id = doctor.Id,
+            FirstName = doctor.FirstName,
+            LastName = doctor.LastName,
+            Email = doctor.Email,
+            Address = doctor.Address
+        };
+        if (doctor is null)
         {
             return RedirectToAction(nameof(Index));
         }
-        return View(Doctor);
+        return View(model);
     }
 
     [HttpPost, ValidateAntiForgeryToken]

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using HospitalManagementSystemMvc.Models.Department;
 using HospitalManagementSystemMvc.Services.Department;
 using Microsoft.AspNetCore.Mvc;
@@ -57,6 +58,36 @@ public class DepartmentController : Controller
 
         return View(Department);
     }
+
+    // GET: Department/edit/{id}
+    public async Task<IActionResult> Edit(int id)
+    {
+        if (id == 0)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+        
+        var department = await _DepartmentService.GetDepartmentByIdAsync(id);
+
+       DepartmentEditViewModel model = new()
+        {
+            DepartmentId = department.DepartmentId,
+            Name = department.Name,
+            Email = department.Email,
+            Address = department.Address
+        };
+        if (department is null)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+        return View(model);
+    }
+
+    // [HttpGet]
+    // public IActionResult Edit()
+    // {
+    //     return View();
+    // }
 
       [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, DepartmentEditViewModel model)
