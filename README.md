@@ -1,0 +1,3 @@
+Hospital management system is to provide a comprehensive and integrated platform that empowers healthcare institutions to optimize patient care 
+Streamline operational processes, and enhance overall efficiency. Through the effective utilization of technology , the system aims to facilitate seamless management of patient information, medical records , appointments  , and administrative tasks. The system is dedicated to improving the delivery of healthcare services by fostering collaboration, enhancing data accuracy , and supporting evidence-based decision-making. 
+Hospital management system involves moving pieces allowing me to create a robust of different tables in our MVC application
