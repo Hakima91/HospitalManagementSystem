@@ -72,11 +72,19 @@ public class   AppointmentController : Controller
         
         var Appointment = await _AppointmentService.GetAppointmentByIdAsync(id);
 
-        if (Appointment is null)
+        AppointmentEditViewModel model = new()
+        {
+            Id = Appointment.Id,
+            PatientId = Appointment.PatientId,
+            DoctorId = Appointment.DoctorId,
+            DateCreated = Appointment.DateCreated          
+        };
+
+        if (model is null)
         {
             return RedirectToAction(nameof(Index));
         }
-        return View(Appointment);
+        return View(model);
     }
 
     [HttpPost, ValidateAntiForgeryToken]

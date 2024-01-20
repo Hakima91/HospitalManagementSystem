@@ -11,7 +11,7 @@ public class BillingController : Controller
         _BillingService = BillingService;
     }
 
-       public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index()
     {
         List<BillingIndexViewModel> Billings = await _BillingService.GetAllBillingAsync();
 
@@ -22,7 +22,7 @@ public class BillingController : Controller
     {
         return View();
     }
-       [HttpPost]
+    [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(BillingCreateViewModel model)
     {
@@ -39,16 +39,16 @@ public class BillingController : Controller
         }
 
         return RedirectToAction(nameof(Index));
-     }
+    }
 
-      public async Task<IActionResult> Details(int id)
+    public async Task<IActionResult> Details(int id)
     {
         if (id == 0)
         {
             return RedirectToAction(nameof(Index));
         }
 
-        var Billing= await _BillingService.GetBillingByIdAsync(  id);
+        var Billing = await _BillingService.GetBillingByIdAsync(id);
 
         if (Billing is null)
         {
@@ -61,11 +61,11 @@ public class BillingController : Controller
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
-       if (id == 0)
+        if (id == 0)
         {
             return RedirectToAction(nameof(Index));
         }
-        
+
         var bill = await _BillingService.GetBillingByIdAsync(id);
 
         BillingEditViewModel model = new()
@@ -87,22 +87,22 @@ public class BillingController : Controller
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, BillingEditViewModel model)
     {
-        var Billing= await _BillingService.EditBillingByIdAsync(id, model);
-        if (Billing== false)
+        var Billing = await _BillingService.EditBillingByIdAsync(id, model);
+        if (Billing == false)
         {
             return NotFound();
         }
-      
-        
+
+
         return RedirectToAction(nameof(Index));
-        
+
 
         // TempData["ErrorMsg"] = "Unable to save to the database. Please try again later.";
         // return View(model);
     }
-     public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        var entity = await _BillingService.DeleteBillingByIdAsync( id);
+        var entity = await _BillingService.DeleteBillingByIdAsync(id);
 
         if (entity == null)
         {

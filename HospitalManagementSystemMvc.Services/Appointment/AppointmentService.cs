@@ -14,21 +14,21 @@ public class AppointmentService : IAppointmentService
         _ctx = DbContext;
     }
 
-     public async Task<List<AppointmentIndexViewModel>> GetAllAppointmentAsync()
- {
-    List<AppointmentIndexViewModel> Appointment= await _ctx.Appointments
-    .Select(Appointment => new AppointmentIndexViewModel
+    public async Task<List<AppointmentIndexViewModel>> GetAllAppointmentAsync()
     {
-        Id = Appointment.AppointmentId,
-        PatientId = Appointment.PatientId,
-        DoctorId  = Appointment.PatientId,
+        List<AppointmentIndexViewModel> Appointment = await _ctx.Appointments
+        .Select(Appointment => new AppointmentIndexViewModel
+        {
+            Id = Appointment.AppointmentId,
+            PatientId = Appointment.PatientId,
+            DoctorId = Appointment.PatientId,
 
-    })
-    .ToListAsync();
-    
+        })
+        .ToListAsync();
 
-     return Appointment;
- }
+
+        return Appointment;
+    }
     public async Task<bool> CreateAppointmentAsync(AppointmentCreateViewModel model)
     {
         AppointmentEntity entity = new()
@@ -113,6 +113,6 @@ public class AppointmentService : IAppointmentService
         return response;
     }
 
-    
+
 }
 

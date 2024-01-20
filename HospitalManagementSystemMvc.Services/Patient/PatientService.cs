@@ -4,39 +4,39 @@ using HospitalManagementSystemMvc.Models.Patient;
 using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManagementSystemMvc.Services.Patient;
-     public class PatientService : IPatientService
+public class PatientService : IPatientService
 {
     private readonly HospitalManagementSystemDbContext _ctx;
     public PatientService(HospitalManagementSystemDbContext dbContext)
     {
         _ctx = dbContext;
     }
-     //read All
+    //read All
     public async Task<List<PatientIndexViewModel>> GetAllPatientsAsync()
     {
-        List<PatientIndexViewModel> patient= await _ctx.Patients
-            .Select(Patient=> new PatientIndexViewModel
+        List<PatientIndexViewModel> patient = await _ctx.Patients
+            .Select(Patient => new PatientIndexViewModel
             {
                 Id = Patient.Id,
                 FirstName = Patient.FirstName,
-                LastName=Patient.LastName,
+                LastName = Patient.LastName,
                 Email = Patient.Email
             })
             .ToListAsync();
 
         return patient;
     }
-     
-     //Create
+
+    //Create
     public async Task<bool> CreatePatientAsync(PatientCreateViewModel model)
     {
         PatientEntity entity = new()
         {
-            
+
             FirstName = model.FirstName,
-            LastName=model.LastName,
+            LastName = model.LastName,
             Email = model.Email,
-            DateOfBirth=model.DateOfBirth
+            DateOfBirth = model.DateOfBirth
         };
 
         _ctx.Patients.Add(entity);
@@ -48,7 +48,7 @@ namespace HospitalManagementSystemMvc.Services.Patient;
     public async Task<PatientDetailViewModel> GetPatientByIdAsync(int? id)
     {
         var entity = await _ctx.Patients
-        
+
             .FirstOrDefaultAsync(c => c.Id == id);
 
         if (entity is null)
@@ -58,13 +58,13 @@ namespace HospitalManagementSystemMvc.Services.Patient;
         {
             Id = entity.Id,
             FirstName = entity.FirstName,
-            LastName=entity.LastName,
+            LastName = entity.LastName,
             Email = entity.Email,
-            
+
         };
 
         await _ctx.SaveChangesAsync();
-        return  model;
+        return model;
     }
 
     public async Task<PatientEditViewModel> GetEditPatientByIdAsync(int? id)
@@ -73,26 +73,26 @@ namespace HospitalManagementSystemMvc.Services.Patient;
 
         PatientEditViewModel model = new()
         {
-            Id=entity.Id,
+            Id = entity.Id,
             FirstName = entity.FirstName,
-            LastName=entity.LastName,
+            LastName = entity.LastName,
             Email = entity.Email
         };
 
         await _ctx.SaveChangesAsync();
-        return  model;
+        return model;
     }
 
-     //Edit
+    //Edit
     public async Task<bool> EditPatientByIdAsync(int id, PatientEditViewModel model)
     {
         var entity = _ctx.Patients.Find(id);
 
-         entity.FirstName= model.FirstName;
-         entity.LastName= model.LastName;
-         entity.Email=model.Email;
+        entity.FirstName = model.FirstName;
+        entity.LastName = model.LastName;
+        entity.Email = model.Email;
 
-        
+
         _ctx.Entry(entity).State = EntityState.Modified;
 
         return await _ctx.SaveChangesAsync() == 1;
@@ -109,15 +109,12 @@ namespace HospitalManagementSystemMvc.Services.Patient;
         {
             return false;
         }
-        
+
         _ctx.Patients.Remove(entity);
-        return true;
-
-
-
+        return await _ctx.SaveChangesAsync() == 1;
     }
 }
-    
+
 
 
 

@@ -3,18 +3,11 @@
     @* string title = $"Doctor {Model.Id}"; *@
     ViewData["Title"] = Model;
 }
-   @* <h1>Doctor</h1>
+@* <h1>Doctor</h1>
 <div class="d-flex justify-content-between align-items-center mb-2"> *@
-    <h1>Doctor</h1>
-    <h2>Doctor Details</h2>
-    @* <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-light">Edit</a> *@
-    <a asp-controller="Doctor" asp-action="Create" asp-route-DoctorId="@Model.Id" class="btn btn-success">Shop</a>
-     Create Doctor
-     </a>
-     <a asp-controller="Doctor" asp-action="Details" asp-route-DoctorId="@Model.Id" class="btn btn-success">Shop</a>
-     Details Doctor
-     </a>
-</div>
+<h1>Doctor</h1>
+<h2>Doctor Details</h2>
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-light">Edit</a>
 
 <dl class="row">
     <dt class="col-sm-2">

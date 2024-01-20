@@ -22,7 +22,7 @@ public class BillingService : IBillingService
             BillingId = Billing.BillingId,
             PatientId = Billing.PatientId,
             Amount = Billing.Amount,
-            DateOfBilling = DateTime.Now
+            DateOfBilling = Billing.DateOfBilling
 
         })
         .ToListAsync();
@@ -60,7 +60,7 @@ public class BillingService : IBillingService
             BillingId = entity.BillingId,
             PatientId = entity.PatientId,
             Amount = entity.Amount,
-            DateOfBilling = DateTime.Now
+            DateOfBilling = entity.DateOfBilling
         };
 
         await _ctx.SaveChangesAsync();
